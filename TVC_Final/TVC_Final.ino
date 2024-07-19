@@ -3,26 +3,24 @@
 #include <imuFilter.h>
 #include <quaternion_type.h>
 #include <vector_type.h>
+#include <pin_defs.h>
+#include <sensor.h>
+#include <types.h>
+#include <BLE.h>
 
-#define SDA0_Pin 48
-#define SCL0_Pin 47
-
+MS5611 baro(0x77);
 BMI085Accel accel(Wire, 0x18);
 BMI085Gyro gyro(Wire, 0x68);
 
 imuFilter fusion;
+SPIFlash flash_5(cs);
 
-// Variables for high-pass filter
 float ALPHA = 0.1; // High-pass filter coefficient
-float prevAccX = 0, prevAccY = 0, prevAccZ = 0;
-
-const int ledPin = 39;
 
 void setup() {
   Serial.begin(115200);
   delay(3000);
   Wire.begin(SDA0_Pin, SCL0_Pin);
-  pinMode(ledPin, OUTPUT);
   int astatus;
   astatus = accel.begin();
   if (astatus < 0) {
@@ -48,6 +46,7 @@ void setup() {
   }
   fusion.setup(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
   Serial.println();
+
 }
 
 void loop() {
