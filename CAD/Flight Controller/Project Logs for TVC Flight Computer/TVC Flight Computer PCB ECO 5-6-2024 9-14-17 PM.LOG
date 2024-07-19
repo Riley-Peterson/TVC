@@ -1,0 +1,29 @@
+Added Component: Designator=L?(SOIC127P780X195-8N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "W25Q128JVSIQ TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/w25q128jvsiqtr/winbond-electronics?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://www.winbond.com/resource-files/w25q128jv%20spi%20revc%2011162016.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Design Item ID"; Value = "W25Q128JVSIQ_TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.95mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Winbond"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "W25Q128JVSIQ TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "454-W25Q128JVSIQTR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Winbond/W25Q128JVSIQ-TR?qs=qSfuJ%252Bfl%2Fd7vTyLA9kNdGw%3D%3D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Source"; Value = "W25Q128JVSIQ_TR.SchLib"; VariantName = "[No Variations]"
+Added Component: Designator=U?(IC40_ESP32-S3-WROOM-2-N32R8V_EXP)
+Add component (AddParameter): Name = "Design Item ID"; Value = "ESP32-S3-WROOM-2-N32R8V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mfr_Name"; Value = "Espressif Systems"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Source"; Value = "ESP32-S3-WROOM-2-N32R8V.SchLib"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=U?-40
+Added Pin To Net: NetName=GND Pin=U?-41
+Added Pin To Net: NetName=GND Pin=U?-42
+Added Pin To Net: NetName=GND Pin=U?-43
+Added Pin To Net: NetName=GND Pin=U?-44
+Added Pin To Net: NetName=GND Pin=U?-45
+Added Pin To Net: NetName=GND Pin=U?-46
+Added Pin To Net: NetName=GND Pin=U?-47
+Added Pin To Net: NetName=GND Pin=U?-48
+Added Pin To Net: NetName=GND Pin=U?-49
+Added Net: Name=GND
+Added Class: Name=TVC Flight Computer

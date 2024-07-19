@@ -1,0 +1,21 @@
+Added Pin To Net: NetName=GND Pin=J?-A1_B12
+Added Pin To Net: NetName=GND Pin=J?-B1_A12
+Added Pin To Net: NetName=GND Pin=J?-SH1
+Added Pin To Net: NetName=GND Pin=J?-SH2
+Added Pin To Net: NetName=GND Pin=J?-SH3
+Added Pin To Net: NetName=GND Pin=J?-SH4
+Added Pin To Net: NetName=+5 Pin=J?-A4_B9
+Added Pin To Net: NetName=+5 Pin=J?-B4_A9
+Added Net: Name=+5
+Added Pin To Net: NetName=DN Pin=J?-A7
+Added Pin To Net: NetName=DN Pin=J?-B7
+Added Pin To Net: NetName=DN Pin=U?-13
+Added Net: Name=DN
+Added Pin To Net: NetName=DP Pin=J?-A6
+Added Pin To Net: NetName=DP Pin=J?-B6
+Added Pin To Net: NetName=DP Pin=U?-14
+Added Net: Name=DP
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? ESP32-S3-WROOM-2-N32R8V

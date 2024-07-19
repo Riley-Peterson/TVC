@@ -1,0 +1,25 @@
+Removed Pin From Net: NetName=NetD?_1 Pin=R?-1
+Removed Pin From Net: NetName=GND Pin=R?-2
+Removed Pin From Net: NetName=VCC Pin=U-3
+Removed Pin From Net: NetName=GND Pin=U-4
+Removed Pin From Net: NetName=GND Pin=U-6
+Removed Pin From Net: NetName=SCL Pin=U-8
+Removed Pin From Net: NetName=SDA Pin=U-9
+Removed Pin From Net: NetName=VCC Pin=U-11
+Removed Member From Class: ClassName=TVC Flight Computer Member=U
+Add Pin To Net: Unknown Pin: Pin D?-1
+Add Pin To Net: Unknown Pin: Pin D?-2
+Added Pin To Net: NetName=NetD?_1 Pin=R?-1
+Added Pin To Net: NetName=SCL Pin=R?-1
+Added Pin To Net: NetName=GND Pin=R?-2
+Added Pin To Net: NetName=VCC Pin=R?-2
+Add Class Member: Failed to add class member : Component D? LED,0603
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J? USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J? 282834-2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component P? 61300311121
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? ESP32-S3-WROOM-2-N32R8V
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? MS561101BA03-50

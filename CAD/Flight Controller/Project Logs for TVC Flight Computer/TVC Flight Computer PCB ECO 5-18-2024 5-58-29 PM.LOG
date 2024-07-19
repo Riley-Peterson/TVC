@@ -1,0 +1,9 @@
+Added Pin To Net: NetName=SELECT Pin=U1-4
+Added Pin To Net: NetName=GATE Pin=U1-17
+Added Pin To Net: NetName=GATE2 Pin=U1-18
+Added Pin To Net: NetName=SCL Pin=U1-24
+Added Pin To Net: NetName=SDA Pin=U1-25
+Added Pin To Net: NetName=ServoY Pin=U1-38
+Added Pin To Net: NetName=ServoX Pin=U1-39
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

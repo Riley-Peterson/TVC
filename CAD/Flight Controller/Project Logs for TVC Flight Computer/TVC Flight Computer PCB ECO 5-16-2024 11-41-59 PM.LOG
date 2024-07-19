@@ -1,0 +1,21 @@
+Removed Pin From Net: NetName=GND Pin=J2-2
+Removed Pin From Net: NetName=VIN Pin=J3-1
+Removed Member From Class: ClassName=TVC Flight Computer Member=J3
+Change Component Footprint: Designator=J2 Old Footprint=CONN2_282834-2_TEC New Footprint=CONN2_282834-2_TEC
+Change Managed Component Library Link : Designator=J2 Old VaultGUID=3464F62F-8F3F-477B-8B21-AB6CB6A31254 New VaultGUID=3464F62F-8F3F-477B-8B21-AB6CB6A31254 Old ItemGUID=C08B6523-3AE5-402F-80D4-1187B4C94292 New ItemGUID=19BD807F-7669-4622-9384-8A4F3C5392AB Old RevisionGUID=3FF09C24-DCE1-4873-99F0-491A39E55B36 New RevisionGUID=58C488B2-CC2C-4397-A6D1-59E30CB8AAB4
+Added Component: Designator=J1(CONN2_282834-2_TEC)
+Add component (AddParameter): Name = "Component Type"; Value = "Standard"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Design Item ID"; Value = "282834-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mfr_Name"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pin Count"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Source"; Value = "282834-2.SchLib"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "TYPE"; Value = "Receptacle"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VIN Pin=J1-1
+Added Pin To Net: NetName=GND Pin=J1-2
+Added Pin To Net: NetName=NetJ2_2 Pin=J2-2
+Added Pin To Net: NetName=NetJ2_2 Pin=U4-8
+Added Net: Name=NetJ2_2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component C3 Capacitor 100 nF +/-10% 50 V 0603
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 282834-2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

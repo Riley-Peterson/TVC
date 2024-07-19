@@ -1,0 +1,26 @@
+Added Component: Designator=U(PQFN50P450X300X100-16N)
+Add component (AddParameter): Name = "Component Type"; Value = "Standard"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Design Item ID"; Value = "BMI085"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key_Part_Number"; Value = "828-1083-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key_Purchase_URL"; Value = "https://www.digikey.com/product-detail/en/bosch-sensortec/BMI085/828-1083-1-ND/8634943?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Bosch Sensortec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "BMI085"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "VFLGA-16 Bosch Tools"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pin Count"; Value = "15"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/BMI085/Bosch%20Sensortec/view-part/2857155/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Source"; Value = "SnapEDAsch.SchLib"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin D?-1
+Add Pin To Net: Unknown Pin: Pin D?-2
+Added Pin To Net: NetName=NetD?_1 Pin=R?-1
+Added Pin To Net: NetName=GND Pin=R?-2
+Add Class Member: Failed to add class member : Component D? LED,0603
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J? 282834-2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J? USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component P? 61300311121
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? ESP32-S3-WROOM-2-N32R8V
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U BMI085

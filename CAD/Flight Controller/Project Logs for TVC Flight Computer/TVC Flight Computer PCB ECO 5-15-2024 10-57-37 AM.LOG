@@ -1,0 +1,23 @@
+Change Component Designator: OldDesignator=R? NewDesignator=U?
+Added Pin To Net: NetName=+5 Pin=B?-7
+Added Pin To Net: NetName=+5 Pin=J?-1
+Added Pin To Net: NetName=GND Pin=R?-2
+Added Pin To Net: NetName=GND Pin=U?-2
+Added Pin To Net: NetName=GATE Pin=U?-1
+Added Net: Name=GATE
+Added Pin To Net: NetName=NetD?_1 Pin=R?-1
+Added Net: Name=NetD?_1
+Added Pin To Net: NetName=NetD?_2 Pin=U?-32
+Added Net: Name=NetD?_2
+Added Pin To Net: NetName=NetJ?_2 Pin=J?-2
+Added Pin To Net: NetName=NetJ?_2 Pin=U?-8
+Added Net: Name=NetJ?_2
+Add Class Member: Failed to add class member : Component D? LED,0603
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J? USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J? 282834-2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R? Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? ESP32-S3-WROOM-2-N32R8V
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? MS561101BA03-50

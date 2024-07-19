@@ -1,0 +1,32 @@
+Added Pin To Net: NetName=GND Pin=U?-1
+Added Pin To Net: NetName=EN Pin=U?-3
+Added Pin To Net: NetName=DN Pin=U?-13
+Added Pin To Net: NetName=DP Pin=U?-14
+Added Pin To Net: NetName=GATE Pin=U?-17
+Added Pin To Net: NetName=GATE2 Pin=U?-18
+Added Pin To Net: NetName=MOSI Pin=U?-19
+Added Pin To Net: NetName=SCK Pin=U?-20
+Added Pin To Net: NetName=MISO Pin=U?-21
+Added Pin To Net: NetName=IO0 Pin=U?-27
+Added Pin To Net: NetName=GND Pin=U?-40
+Added Pin To Net: NetName=GND Pin=U?-41_1
+Added Pin To Net: NetName=GND Pin=U?-41_2
+Added Pin To Net: NetName=GND Pin=U?-41_3
+Added Pin To Net: NetName=GND Pin=U?-41_4
+Added Pin To Net: NetName=GND Pin=U?-41_5
+Added Pin To Net: NetName=GND Pin=U?-41_6
+Added Pin To Net: NetName=GND Pin=U?-41_7
+Added Pin To Net: NetName=GND Pin=U?-41_8
+Added Pin To Net: NetName=GND Pin=U?-41_9
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=U?-32
+Added Net: Name=NetD1_1
+Added Member To Class: ClassName=PowerScheme Member=Component C? Capacitor 100 nF +/-10% 50 V 0603
+Added Member To Class: ClassName=PowerScheme Member=Component C? Capacitor 100 nF +/-10% 50 V 0603
+Added Member To Class: ClassName=PowerScheme Member=Component J? USB4105-GF-A
+Added Member To Class: ClassName=PowerScheme Member=Component J? 691210910002
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
+Added Member To Class: ClassName=PowerScheme Member=Component U? SP8K2TB
+Added Member To Class: ClassName=PowerScheme Member=Component U? TPS7B8633BQDDARQ1
+Added Member To Class: ClassName=PowerScheme Member=Component U? LDL1117S50R
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? ESP32-S3-WROOM-2-N32R8V

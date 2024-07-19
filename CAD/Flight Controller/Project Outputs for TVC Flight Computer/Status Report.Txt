@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [TVC Flight Computer.PrjPcb]
+   Generated File[TVC Flight Computer-RoundHoles.TXT]
+   Generated File[TVC Flight Computer-SlotHoles.TXT]
+   Generated File[TVC Flight Computer.LDP]
+   Generated File[TVC Flight Computer.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 5:22:07 PM On 6/7/2024

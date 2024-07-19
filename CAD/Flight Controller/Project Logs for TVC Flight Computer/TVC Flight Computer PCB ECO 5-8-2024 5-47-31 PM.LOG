@@ -1,0 +1,13 @@
+Added Component: Designator=B?(SOIC127P600X170-9N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=26&gotoUrl=https://www.ti.com/lit/gpn/tps7b86-q1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Design Item ID"; Value = "TPS7B8633BQDDARQ1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "1.7mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "TPS7B8633BQDDARQ1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "595-PS7B8633BQDDARQ1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/TPS7B8633BQDDARQ1?qs=ulEaXIWI0c8jShQv7JB9Ew%3D%3D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Source"; Value = "TPS7B8633BQDDARQ1.SchLib"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=TVC Flight Computer Member=Component B? TPS7B8633BQDDARQ1
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U? ESP32-S3-WROOM-2-N32R8V

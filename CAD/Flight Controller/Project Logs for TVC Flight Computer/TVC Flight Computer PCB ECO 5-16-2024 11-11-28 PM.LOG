@@ -1,0 +1,8 @@
+Change Component Designator: OldDesignator=P? NewDesignator=X
+Change Component Designator: OldDesignator=P? NewDesignator=Y
+Added Member To Class: ClassName=TVC Flight Computer Member=Component C3 Capacitor 10µF +/-20% 10V 0603
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J3 282834-2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component R3 Resistor 10k +/-1% 0603 100 mW
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
+Added Member To Class: ClassName=TVC Flight Computer Member=Component U6 LDL1117S50R
+Added Member To Class: ClassName=TVC Flight Computer Member=Component Y 61300311121

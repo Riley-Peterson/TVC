@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=GATE Pin=U4-1
+Removed Pin From Net: NetName=GND Pin=U4-2
+Added Pin To Net: NetName=GND Pin=U4-1
+Added Pin To Net: NetName=GATE Pin=U4-2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

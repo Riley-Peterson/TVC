@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=X? Old Footprint=61300311121 New Footprint=61300311121
+Change Component Designator: OldDesignator=X? NewDesignator=SEL
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

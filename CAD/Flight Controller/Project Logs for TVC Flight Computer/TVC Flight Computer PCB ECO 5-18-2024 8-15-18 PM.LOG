@@ -1,0 +1,6 @@
+Added Pin To Net: NetName=GPIO7 Pin=U1-7
+Added Net: Name=GPIO7
+Added Pin To Net: NetName=GPIO15 Pin=U1-8
+Added Net: Name=GPIO15
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

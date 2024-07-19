@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=CS Pin=U1-6
+Added Net: Name=CS
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

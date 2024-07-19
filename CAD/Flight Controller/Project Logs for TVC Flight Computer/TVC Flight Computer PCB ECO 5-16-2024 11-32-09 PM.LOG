@@ -1,0 +1,3 @@
+Change Component Designator: OldDesignator=C3 NewDesignator=C4
+Added Member To Class: ClassName=TVC Flight Computer Member=Component C4 Capacitor 10µF +/-20% 10V 0603
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1

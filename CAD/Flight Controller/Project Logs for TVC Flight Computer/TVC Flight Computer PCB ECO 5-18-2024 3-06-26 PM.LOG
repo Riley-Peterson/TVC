@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=J1-2
+Removed Pin From Net: NetName=PYRO Pin=J2-1
+Removed Pin From Net: NetName=VIN Pin=J2-2
+Added Pin To Net: NetName=VIN Pin=J2-1
+Added Pin To Net: NetName=PYRO Pin=J2-2
+Added Pin To Net: NetName=GND Pin=U4-4
+Added Pin To Net: NetName=GATE2 Pin=U4-3
+Added Net: Name=GATE2
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-2
+Added Pin To Net: NetName=NetJ1_2 Pin=U4-6
+Added Net: Name=NetJ1_2
+Added Member To Class: ClassName=TVC Flight Computer Member=Component J1 USB4105-GF-A
+Added Member To Class: ClassName=TVC Flight Computer Member=Component SW 147873-1
