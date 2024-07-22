@@ -10,26 +10,25 @@
 #include <SPI.h>
 #include <SPIMemory.h>
 #include <pin_defs.h>
-#include <sensor.h>
 #include <types.h>
+#include <sensors.h>
 //#include <BLE.h>
 
 // IMU objects
 BMI085Accel accel(Wire, 0x18);
 BMI085Gyro gyro(Wire, 0x68);
 
-SPIFlash flash_5(CS);
+SPIFlash flash_5(chip_select);
 imuFilter fusion;
 float ALPHA = 0.1; // High-pass filter coefficient
-quat_t initialQuat = {0, 0, 0, 0}; // Initial quaternion
-quat_t initialQuatConjugate = {0, 0, 0, 0}; // Conjugate of the initial quaternion
-
+quat_t initial_quat = {0, 0, 0, 0}; // Initial quaternion
+quat_t initial_quat_conjugate = {0, 0, 0, 0}; // Conjugate of the initial quaternion
 #include <BLE.h>
 
 
 void setup() {
-  initialize_pins();
-  initialize_bluetooth();
+  initializePins();
+  initializeBluetooth();
   Serial.begin(115200);
   delay(3000);
   Wire.begin(SDA0_Pin, SCL0_Pin);
@@ -40,11 +39,11 @@ void setup() {
   if (astatus < 0) {
     Serial.println("Accel Initialization Error");
     Serial.println(astatus);
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(led_pin, HIGH);
     delay(1000);
-    digitalWrite(ledPin, LOW);
+    digitalWrite(led_pin, LOW);
     delay(1000);
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(led_pin, HIGH);
     while (1) {}
   } else {
     Serial.println("Accelerometer initialized successfully");
@@ -55,11 +54,11 @@ void setup() {
   if (astatus < 0) {
     Serial.println("Gyro Initialization Error");
     Serial.println(astatus);
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(led_pin, HIGH);
     delay(1000);
-    digitalWrite(ledPin, LOW);
+    digitalWrite(led_pin, LOW);
     delay(1000);
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(led_pin, HIGH);
     while (1) {}
   } else {
     Serial.println("Gyroscope initialized successfully");
@@ -76,16 +75,16 @@ void setup() {
   fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, filt_accel.x, filt_accel.y, filt_accel.z);
   
   // Capture the initial quaternion
-  initialQuat = fusion.getQuat();
+  initial_quat = fusion.getQuat();
   
   // Compute its conjugate
-  initialQuatConjugate = {initialQuat.w, -initialQuat.v.x, -initialQuat.v.y, -initialQuat.v.z};
+  initial_quat_conjugate = {initial_quat.w, -initial_quat.v.x, -initial_quat.v.y, -initial_quat.v.z};
 }
 
 void loop() {
   gyro.readSensor();
   accel.readSensor();
-  delay(10);
+  delay(100);
   vec3_t gyro_rads(gyro.getGyroX_rads(), gyro.getGyroY_rads(), gyro.getGyroZ_rads());
   vec3_t curr_accel(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
   vec3_t filt_accel = ALPHA * curr_accel;
@@ -95,7 +94,7 @@ void loop() {
   quat_t q = fusion.getQuat();
   
   // Correct the quaternion by multiplying with the initial conjugate
-  q = initialQuatConjugate * q;
+  q = initial_quat_conjugate * q;
   
   // Convert the corrected quaternion to Euler angles
   float sinr_cosp = 2 * (q.w * q.v.x + q.v.y * q.v.z);
@@ -114,6 +113,7 @@ void loop() {
   float cosy_cosp = 1 - 2 * (q.v.y * q.v.y + q.v.z * q.v.z);
   float yaw = (atan2(siny_cosp, cosy_cosp)) * (180 / PI);
 
-  Serial.printf("roll:%.2f,pitch:%.2f,yaw:%.2f", roll, pitch, yaw);
+  //Serial.printf("roll:%.2f,pitch:%.2f,yaw:%.2f", roll, pitch, yaw);
+  Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
   Serial.println();
 }

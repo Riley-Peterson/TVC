@@ -3,26 +3,26 @@
 
 #define SDA0_Pin 48
 #define SCL0_Pin 47
-#define ledPin 39
-#define ServoX 1
-#define ServoY 2
-#define CS 5
+#define led_pin 39
+#define servo_x 1
+#define servo_y 2
+#define chip_select 5
 #define select 6
-#define buzz 8
-#define pyro1 9
-#define pyro2 10
+#define buzzer 8
+#define pyro_1 9
+#define pyro_2 10
 #define MOSI 11
 #define MISO 13
 
-inline void initialize_pins() {
-  pinMode(pyro1, OUTPUT);
-  pinMode(pyro2, OUTPUT);
-  digitalWrite(pyro1, LOW);
-  digitalWrite(pyro2, LOW);
-  pinMode(ledPin, OUTPUT);
-  pinMode(buzz, OUTPUT);
-  pinMode(CS, OUTPUT);
-  digitalWrite(CS, HIGH);
+inline void initializePins() {
+  pinMode(pyro_1, OUTPUT);
+  pinMode(pyro_2, OUTPUT);
+  digitalWrite(pyro_1, LOW);
+  digitalWrite(pyro_2, LOW);
+  pinMode(led_pin, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(chip_select, OUTPUT);
+  digitalWrite(chip_select, HIGH);
 }
 
 #endif

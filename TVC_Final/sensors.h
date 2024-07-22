@@ -1,6 +1,6 @@
 
 
 
-inline void initialize_sensors() {
+inline void initializeSensors() {
   
 }

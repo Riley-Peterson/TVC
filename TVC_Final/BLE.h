@@ -51,9 +51,9 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           vec3_t filt_accel = ALPHA * curr_accel;
           fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, filt_accel.x, filt_accel.y, filt_accel.z);
           // Capture the initial quaternion
-          initialQuat = fusion.getQuat();
+          initial_quat = fusion.getQuat();
           // Compute its conjugate
-          initialQuatConjugate = {initialQuat.w, -initialQuat.v.x, -initialQuat.v.y, -initialQuat.v.z};
+          initial_quat_conjugate = {initial_quat.w, -initial_quat.v.x, -initial_quat.v.y, -initial_quat.v.z};
         }
         else if (rxValue.indexOf("B") != -1) {
           Serial.println("Turning OFF!");
@@ -66,7 +66,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
     }
 };
 
-inline void initialize_bluetooth() {
+inline void initializeBluetooth() {
   BLEDevice::init("Sigmoid Flight Controller");
   BLEServer *pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
