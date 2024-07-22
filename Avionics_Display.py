@@ -1,80 +1,66 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
-from PyQt5.QtCore import QTimer
-import pyqtgraph as pg
-import numpy as np
 import serial
+import pyqtgraph.opengl as gl
+from pyqtgraph.Qt import QtCore, QtWidgets
+import numpy as np
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
+# Serial port configuration
+port = 'COM6'  # Update with your COM port
+baudrate = 115200
+ser = serial.Serial(port, baudrate)
 
-        print("Creating MainWindow")
-        self.setWindowTitle('Real-time IMU Data')
-
-        # Set up serial port
-        self.ser = serial.Serial('COM6', baudrate=115200, timeout=1)
-
-        # Create a central widget and set the layout
-        central_widget = QWidget()
-        self.setCentralWidget(central_widget)
-        layout = QVBoxLayout()
-        central_widget.setLayout(layout)
-
-        # Create a PlotWidget and add it to the layout
-        self.plot_widget = pg.PlotWidget()
-        layout.addWidget(self.plot_widget)
-
-        # Set up data arrays
-        self.max_samples = 100
-        self.sample_index = np.arange(self.max_samples)
-        self.roll_data = np.zeros(self.max_samples)
-        self.pitch_data = np.zeros(self.max_samples)
-        self.yaw_data = np.zeros(self.max_samples)
-
-        # Add plots to the widget
-        self.roll_plot = self.plot_widget.plot(self.sample_index, self.roll_data, pen='r', name='Roll')
-        self.pitch_plot = self.plot_widget.plot(self.sample_index, self.pitch_data, pen='g', name='Pitch')
-        self.yaw_plot = self.plot_widget.plot(self.sample_index, self.yaw_data, pen='b', name='Yaw')
-
-        # Set up a timer to update the plot
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.update_plot)
-        self.timer.start(50)  # Update every 50 ms
-
-    def update_plot(self):
-        # Read from the serial port
-        if self.ser.in_waiting > 0:
-            line = self.ser.readline().decode('utf-8').rstrip()
-            try:
-                # Parse the data
-                parts = line.split(',')
-                roll = float(parts[0].split(':')[1])
-                pitch = float(parts[1].split(':')[1])
-                yaw = float(parts[2].split(':')[1])
-
-                # Update the data arrays
-                self.roll_data = np.roll(self.roll_data, -1)
-                self.pitch_data = np.roll(self.pitch_data, -1)
-                self.yaw_data = np.roll(self.yaw_data, -1)
-                self.roll_data[-1] = roll
-                self.pitch_data[-1] = pitch
-                self.yaw_data[-1] = yaw
-
-                # Update the plots
-                self.roll_plot.setData(self.sample_index, self.roll_data)
-                self.pitch_plot.setData(self.sample_index, self.pitch_data)
-                self.yaw_plot.setData(self.sample_index, self.yaw_data)
-
-            except Exception as e:
-                print(f"Error parsing data: {e}")
-
-# Create a Qt application
-app = QApplication(sys.argv)
-
-# Create and show the main window
-window = MainWindow()
+# PyQtGraph window setup
+app = QtWidgets.QApplication([])
+window = gl.GLViewWidget()
 window.show()
+window.setWindowTitle('3D Quaternion Visualization')
 
-# Start the Qt event loop
-sys.exit(app.exec_())
+# 3D axis and grid
+grid = gl.GLGridItem()
+window.addItem(grid)
+axis = gl.GLAxisItem()
+window.addItem(axis)
+
+# Vector component lines
+x_line = gl.GLLinePlotItem()
+y_line = gl.GLLinePlotItem()
+z_line = gl.GLLinePlotItem()
+window.addItem(x_line)
+window.addItem(y_line)
+window.addItem(z_line)
+
+def update():
+    if ser.in_waiting:
+        data = ser.readline().decode('utf-8').strip()
+        try:
+            w, x, y, z = map(float, data.split(','))
+
+            # Normalize quaternion
+            norm = np.sqrt(w*w + x*x + y*y + z*z)
+            w, x, y, z = w/norm, x/norm, y/norm, z/norm
+
+            # Convert quaternion to rotation matrix
+            rot_matrix = np.array([
+                [1 - 2*(y*y + z*z), 2*(x*y - z*w), 2*(x*z + y*w)],
+                [2*(x*y + z*w), 1 - 2*(x*x + z*z), 2*(y*z - x*w)],
+                [2*(x*z - y*w), 2*(y*z + x*w), 1 - 2*(x*x + y*y)]
+            ])
+
+            # Define vectors
+            origin = np.array([0, 0, 0])
+            x_vec = rot_matrix @ np.array([1, 0, 0])
+            y_vec = rot_matrix @ np.array([0, 1, 0])
+            z_vec = rot_matrix @ np.array([0, 0, 1])
+
+            # Update plot data
+            x_line.setData(pos=np.array([origin, x_vec]))
+            y_line.setData(pos=np.array([origin, y_vec]))
+            z_line.setData(pos=np.array([origin, z_vec]))
+
+        except ValueError:
+            pass
+
+timer = QtCore.QTimer()
+timer.timeout.connect(update)
+timer.start(50)  # Update rate in milliseconds
+
+QtWidgets.QApplication.instance().exec_()
