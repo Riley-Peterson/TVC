@@ -32,7 +32,12 @@ def update():
     if ser.in_waiting:
         data = ser.readline().decode('utf-8').strip()
         try:
-            w, x, y, z = map(float, data.split(','))
+            # Parse the quaternion data
+            parts = data.split(',')
+            w = float(parts[0].split(':')[1])
+            x = float(parts[1].split(':')[1])
+            y = float(parts[2].split(':')[1])
+            z = float(parts[3].split(':')[1])
 
             # Normalize quaternion
             norm = np.sqrt(w*w + x*x + y*y + z*z)
@@ -56,7 +61,7 @@ def update():
             y_line.setData(pos=np.array([origin, y_vec]))
             z_line.setData(pos=np.array([origin, z_vec]))
 
-        except ValueError:
+        except (ValueError, IndexError):
             pass
 
 timer = QtCore.QTimer()
