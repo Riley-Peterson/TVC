@@ -1,10 +1,6 @@
 #ifndef BLE_H
 #define BLE_H
 
-#include <pin_defs.h>
-#include <Arduino.h>
-#include <SPIMemory.h>
-
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>

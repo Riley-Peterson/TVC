@@ -1,71 +1,20 @@
-#include <Wire.h>
-#include <BMI085.h>
-#include <imuFilter.h>
 #include <quaternion_type.h>
 #include <vector_type.h>
-#include <BLE2902.h>
-#include <BLEDevice.h>
-#include <BLEServer.h>
-#include <BLEUtils.h>
 #include <SPI.h>
 #include <SPIMemory.h>
 #include <pin_defs.h>
 #include <types.h>
 #include <sensors.h>
-//#include <BLE.h>
-
-// IMU objects
-BMI085Accel accel(Wire, 0x18);
-BMI085Gyro gyro(Wire, 0x68);
-
-SPIFlash flash_5(chip_select);
-imuFilter fusion;
-float ALPHA = 0.1; // High-pass filter coefficient
-quat_t initial_quat = {0, 0, 0, 0}; // Initial quaternion
-quat_t initial_quat_conjugate = {0, 0, 0, 0}; // Conjugate of the initial quaternion
 #include <BLE.h>
 
+SPIFlash flash_5(chip_select);
 
 void setup() {
+  Serial.begin(115200);
   initializePins();
   initializeBluetooth();
-  Serial.begin(115200);
+  initializeSensors();
   delay(3000);
-  Wire.begin(SDA0_Pin, SCL0_Pin);
-
-  // Initialize accelerometer
-  int astatus;
-  astatus = accel.begin();
-  if (astatus < 0) {
-    Serial.println("Accel Initialization Error");
-    Serial.println(astatus);
-    digitalWrite(led_pin, HIGH);
-    delay(1000);
-    digitalWrite(led_pin, LOW);
-    delay(1000);
-    digitalWrite(led_pin, HIGH);
-    while (1) {}
-  } else {
-    Serial.println("Accelerometer initialized successfully");
-  }
-
-  // Initialize gyroscope
-  astatus = gyro.begin();
-  if (astatus < 0) {
-    Serial.println("Gyro Initialization Error");
-    Serial.println(astatus);
-    digitalWrite(led_pin, HIGH);
-    delay(1000);
-    digitalWrite(led_pin, LOW);
-    delay(1000);
-    digitalWrite(led_pin, HIGH);
-    while (1) {}
-  } else {
-    Serial.println("Gyroscope initialized successfully");
-  }
-
-  fusion.setup(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
-  Serial.println();
   delay(100);
   gyro.readSensor();
   accel.readSensor();
@@ -113,7 +62,7 @@ void loop() {
   float cosy_cosp = 1 - 2 * (q.v.y * q.v.y + q.v.z * q.v.z);
   float yaw = (atan2(siny_cosp, cosy_cosp)) * (180 / PI);
 
-  //Serial.printf("roll:%.2f,pitch:%.2f,yaw:%.2f", roll, pitch, yaw);
-  Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
+  Serial.printf("roll:%.2f,pitch:%.2f,yaw:%.2f", roll, pitch, yaw);
+  //Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
   Serial.println();
 }
