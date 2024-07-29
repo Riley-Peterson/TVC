@@ -40,16 +40,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           Serial.println("Calibrating...");
           pTxCharacteristic->setValue("Calibrating...\n");
           pTxCharacteristic->notify();
-          gyro.readSensor();
-          accel.readSensor();
-          vec3_t gyro_rads(gyro.getGyroX_rads(), gyro.getGyroY_rads(), gyro.getGyroZ_rads());
-          vec3_t curr_accel(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
-          vec3_t filt_accel = ALPHA * curr_accel;
-          fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, filt_accel.x, filt_accel.y, filt_accel.z);
-          // Capture the initial quaternion
-          initial_quat = fusion.getQuat();
-          // Compute its conjugate
-          initial_quat_conjugate = {initial_quat.w, -initial_quat.v.x, -initial_quat.v.y, -initial_quat.v.z};
+          calibrateIMU();
         }
         else if (rxValue.indexOf("B") != -1) {
           Serial.println("Turning OFF!");
