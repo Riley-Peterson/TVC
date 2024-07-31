@@ -9,7 +9,7 @@
 BMI085Accel accel(Wire, 0x18);
 BMI085Gyro gyro(Wire, 0x68);
 imuFilter fusion;
-float ALPHA = 0.1; // High-pass filter coefficient
+float ALPHA = 0.8; // High-pass filter coefficient
 quat_t initial_quat = {0, 0, 0, 0}; // Initial quaternion
 quat_t initial_quat_conjugate = {0, 0, 0, 0}; // Conjugate of the initial quaternion
 quat_t q = {0, 0, 0, 0};
@@ -58,13 +58,16 @@ inline void readSensors() {
   vec3_t gyro_rads(gyro.getGyroX_rads(), gyro.getGyroY_rads(), gyro.getGyroZ_rads());
   vec3_t curr_accel(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
   vec3_t filt_accel = ALPHA * curr_accel;
+  Serial.printf("x:%.2f,y:%.2f,z:%.2f", curr_accel.x, curr_accel.y, curr_accel.z);
+  Serial.println();
   fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, filt_accel.x, filt_accel.y, filt_accel.z);
 
   q = fusion.getQuat();
   q = initial_quat_conjugate * q;
 
-  Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
-  Serial.println();
+  // Uncomment for quaternion outputs
+  //Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
+  //Serial.println();
 }
 
 inline void calibrateIMU() {

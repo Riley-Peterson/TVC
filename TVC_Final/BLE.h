@@ -41,10 +41,16 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           pTxCharacteristic->setValue("Calibrating...\n");
           pTxCharacteristic->notify();
           calibrateIMU();
+          delay(100);
+          pTxCharacteristic->setValue("Calibrated!\n");
+          pTxCharacteristic->notify();
         }
-        else if (rxValue.indexOf("B") != -1) {
-          Serial.println("Turning OFF!");
-          pTxCharacteristic->setValue("Turning OFF!\n");
+        else if (rxValue.indexOf("ARM") != -1) {
+          Serial.println("Arming...");
+          pTxCharacteristic->setValue("Arming...\n");
+          pTxCharacteristic->notify();
+          delay(100);
+          pTxCharacteristic->setValue("Armed!\n");
           pTxCharacteristic->notify();
         }
         Serial.println();
