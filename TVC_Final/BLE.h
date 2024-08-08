@@ -11,6 +11,7 @@
 #define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 
 bool deviceConnected = false;
+bool armed = false;
 
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pRxCharacteristic;
@@ -49,6 +50,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           Serial.println("Arming...");
           pTxCharacteristic->setValue("Arming...\n");
           pTxCharacteristic->notify();
+          armed = true;
           delay(100);
           pTxCharacteristic->setValue("Armed!\n");
           pTxCharacteristic->notify();
