@@ -9,7 +9,6 @@
 BMI085Accel accel(Wire, 0x18);
 BMI085Gyro gyro(Wire, 0x68);
 imuFilter fusion;
-float ALPHA = 0.8; // High-pass filter coefficient
 quat_t initial_quat = {0, 0, 0, 0}; // Initial quaternion
 quat_t initial_quat_conjugate = {0, 0, 0, 0}; // Conjugate of the initial quaternion
 quat_t q = {0, 0, 0, 0};
@@ -18,7 +17,7 @@ float pitch = 0;
 float yaw = 0;
 float roll = 0;
 
-inline void initializeSensors() {
+inline void initializeSensors() { // Initialize Sensors
   Wire.begin(SDA0_Pin, SCL0_Pin);
   // Initialize accelerometer
   astatus = accel.begin();
@@ -52,38 +51,32 @@ inline void initializeSensors() {
   fusion.setup(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
 }
 
-inline void readSensors() {
+inline void readSensors() { // Read sensor values and store quaternion output
   gyro.readSensor();
   accel.readSensor();
   vec3_t gyro_rads(gyro.getGyroX_rads(), gyro.getGyroY_rads(), gyro.getGyroZ_rads());
   vec3_t curr_accel(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
-  vec3_t filt_accel = ALPHA * curr_accel;
-  Serial.printf("x:%.2f,y:%.2f,z:%.2f", curr_accel.x, curr_accel.y, curr_accel.z);
-  Serial.println();
-  fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, filt_accel.x, filt_accel.y, filt_accel.z);
+  //Serial.printf("x:%.2f,y:%.2f,z:%.2f", curr_accel.x, curr_accel.y, curr_accel.z);
+  //Serial.println();
+  fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, curr_accel.x, curr_accel.y, curr_accel.z);
 
   q = fusion.getQuat();
   q = initial_quat_conjugate * q;
-
-  // Uncomment for quaternion outputs
-  //Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
-  //Serial.println();
 }
 
-inline void calibrateIMU() {
+inline void calibrateIMU() { // Zero out sensor
   gyro.readSensor();
   accel.readSensor();
   vec3_t gyro_rads(gyro.getGyroX_rads(), gyro.getGyroY_rads(), gyro.getGyroZ_rads());
   vec3_t curr_accel(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
-  vec3_t filt_accel = ALPHA * curr_accel;
-  fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, filt_accel.x, filt_accel.y, filt_accel.z);
+  fusion.update(gyro_rads.x, gyro_rads.y, gyro_rads.z, curr_accel.x, curr_accel.y, curr_accel.z);
   // Capture the initial quaternion
   initial_quat = fusion.getQuat();
   // Compute its conjugate
   initial_quat_conjugate = {initial_quat.w, -initial_quat.v.x, -initial_quat.v.y, -initial_quat.v.z};
 }
 
-inline void getEuler() {
+inline void updateEuler() { // 
   float sinr_cosp = 2 * (q.w * q.v.x + q.v.y * q.v.z);
   float cosr_cosp = 1 - 2 * (q.v.x * q.v.x + q.v.y * q.v.y);
   roll = (atan2(sinr_cosp, cosr_cosp)) * (180 / PI);
@@ -99,9 +92,21 @@ inline void getEuler() {
   float siny_cosp = 2 * (q.w * q.v.z + q.v.x * q.v.y);
   float cosy_cosp = 1 - 2 * (q.v.y * q.v.y + q.v.z * q.v.z);
   yaw = (atan2(siny_cosp, cosy_cosp)) * (180 / PI);
+}
 
+inline void printEuler() {
   Serial.printf("roll:%.2f,pitch:%.2f,yaw:%.2f", roll, pitch, yaw);
   Serial.println();
+}
+
+inline void printQuat() {
+  Serial.printf("w:%.2f,x:%.2f,y:%.2f,z:%.2f", q.w, q.v.x, q.v.y, q.v.z);
+  Serial.println();
+}
+
+float getAccelMagnitude() {
+  accel.readSensor();
+  return abs(accel.getAccelX_mss()) + abs(accel.getAccelY_mss()) + abs(accel.getAccelZ_mss());
 }
 
 #endif

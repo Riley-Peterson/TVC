@@ -1,23 +1,14 @@
 #include <types.h>
 #include <pin_defs.h>
+#include <system_utils.h>
 #include <flash_chip.h>
 #include <sensors.h>
 #include <BLE.h>
-#include <PID_v1.h>
-#include <ESP32Servo.h>
+#include <controls.h>
 
-// Servo objects
-Servo servoX;
-Servo servoY;
-
-// PID variables
-double pitchSetpoint = 0, pitchInput, pitchOutput;
-double yawSetpoint = 0, yawInput, yawOutput;
-double Kp = 1, Ki = 0.02, Kd = 0.3;
-
-// PID controllers
-PID pitchPID(&pitchInput, &pitchOutput, &pitchSetpoint, Kp, Ki, Kd, DIRECT);
-PID yawPID(&yawInput, &yawOutput, &yawSetpoint, Kp, Ki, Kd, DIRECT);
+bool chutes_fired = false;
+unsigned long timeSinceLaunch;
+unsigned long lastTime;
 
 void setup() {
   Serial.begin(115200);
@@ -25,41 +16,35 @@ void setup() {
   initializePins();
   initializeBluetooth();
   initializeSensors();
+  initializeControls();
   calibrateIMU();
   delay(500);
-
-  // Attach servos
-  servoX.attach(1); // GPIO 1 for pitch (x-axis)
-  servoY.attach(2); // GPIO 2 for yaw (y-axis)
-
-  // Initialize PID controllers
-  pitchPID.SetMode(AUTOMATIC);
-  pitchPID.SetOutputLimits(-25, 25); // Limits for servo angles
-  yawPID.SetMode(AUTOMATIC);
-  yawPID.SetOutputLimits(-25, 25); // Limits for servo angles
   while(!armed) {
     digitalWrite(led_pin, HIGH);
     delay(500);
     digitalWrite(led_pin, LOW);
     delay(500);
   }
+  while(!launchDetect()) {
+    Serial.println(getAccelMagnitude());
+    delay(10);
+  }
+  delay(8000);
+  onGround();
+  timeSinceLaunch = millis();
+  lastTime = timeSinceLaunch;
 }
 
 void loop() {
-  readSensors();
-  getEuler();
+  if(lastTime - timeSinceLaunch > 4000 && !chutes_fired && lastTime - timeSinceLaunch < 7000) { // This will be done with an interrupt in the future
+    digitalWrite(pyro_1, HIGH);
+    chutes_fired = true;
+  }
+  if(lastTime - timeSinceLaunch > 7000 && chutes_fired) {// This will also be done with an interrupt in the future
+    digitalWrite(pyro_1, LOW);
+    chutes_fired = false;
+  }
 
-  // Update PID inputs
-  pitchInput = pitch;
-  yawInput = yaw;
-
-  // Compute PID outputs
-  pitchPID.Compute();
-  yawPID.Compute();
-
-  // Move servos based on PID output
-  servoX.write(map(pitchOutput, -25, 25, 0, 180));
-  servoY.write(map(yawOutput, -25, 25, 0, 180));
-
-  delay(100);
+  updateControls();
+  delay(10);
 }

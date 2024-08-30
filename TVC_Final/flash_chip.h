@@ -2,12 +2,12 @@
 #define FLASH_CHIP_H
 
 #include <SPI.h>
-#include <SPIMemory.h>
+//#include <SPIMemory.h>
 
-SPIFlash flash_5(chip_select);
+//SPIFlash flash(chip_select);
 
 inline void initializeFlash() {
-  
+  //flash.begin();
 }
 
 #endif

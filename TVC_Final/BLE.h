@@ -19,9 +19,11 @@ BLECharacteristic *pRxCharacteristic;
 class MyServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
       deviceConnected = true;
+      deviceConnectedSound();
     };
     void onDisconnect(BLEServer* pServer) {
       deviceConnected = false;
+      deviceDisconnectedSound();
       pServer->getAdvertising()->start();
     }
 };
@@ -51,6 +53,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           pTxCharacteristic->setValue("Arming...\n");
           pTxCharacteristic->notify();
           armed = true;
+          armedSound();
           delay(100);
           pTxCharacteristic->setValue("Armed!\n");
           pTxCharacteristic->notify();
