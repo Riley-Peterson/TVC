@@ -58,6 +58,15 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           pTxCharacteristic->setValue("Armed!\n");
           pTxCharacteristic->notify();
         }
+        else if (rxValue.indexOf("STATS") != -1) {
+          Serial.println(max_alt);
+          pTxCharacteristic->setValue("Max altitude: ");
+          pTxCharacteristic->notify();
+          pTxCharacteristic->setValue(String(max_alt - ground_alt));
+          pTxCharacteristic->notify();
+          pTxCharacteristic->setValue(" feet \n");
+          pTxCharacteristic->notify();
+        }
         Serial.println();
         Serial.println("*********");
       }

@@ -49,6 +49,12 @@ inline void armedSound() {
   noTone(buzzer);
 }
 
+inline void erasedFlashSound() {
+  tone(buzzer, 1000);
+  delay(4000);
+  noTone(buzzer);
+}
+
 inline void onGround() {
   while(1) {
     tone(buzzer, 1000);

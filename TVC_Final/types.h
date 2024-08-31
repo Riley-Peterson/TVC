@@ -1,7 +1,7 @@
 #include <quaternion_type.h>
 #include <vector_type.h>
 
-enum class FlightPhase {PAD_IDLE, ASCENT, COAST, APOGEE, MAIN, GROUND};
+enum class FlightPhase {PAD_IDLE, ASCENT, APOGEE, MAIN, GROUND};
 
 struct FlightData {
   uint32_t time;

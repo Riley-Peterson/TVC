@@ -19,6 +19,7 @@ inline void initializePins() {
   pinMode(pyro_2, OUTPUT);
   digitalWrite(pyro_1, LOW);
   digitalWrite(pyro_2, LOW);
+  pinMode(select, INPUT);
   pinMode(led_pin, OUTPUT);
   pinMode(buzzer, OUTPUT);
   pinMode(chip_select, OUTPUT);

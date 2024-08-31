@@ -13,6 +13,9 @@ double pitchSetpoint = 0, pitchInput, pitchOutput;
 double yawSetpoint = 0, yawInput, yawOutput;
 double Kp = 1, Ki = 0.02, Kd = 0.3;
 
+float actuation_x = 0;
+float actuation_y = 0;
+
 // PID controllers
 PID pitchPID(&pitchInput, &pitchOutput, &pitchSetpoint, Kp, Ki, Kd, DIRECT);
 PID yawPID(&yawInput, &yawOutput, &yawSetpoint, Kp, Ki, Kd, DIRECT);
@@ -31,8 +34,6 @@ inline void initializeControls() {
 
 inline void updateControls() {
   // Update PID inputs
-  readSensors();
-
   pitchInput = pitch;
   yawInput = yaw;
 
@@ -41,14 +42,16 @@ inline void updateControls() {
   yawPID.Compute();
 
   // Move servos based on PID output
-  servoX.write(map(pitchOutput, -25, 25, 0, 180));
-  servoY.write(map(yawOutput, -25, 25, 0, 180));
+  actuation_x = pitchOutput;
+  actuation_y = yawOutput;
+  servoX.write(map(pitchOutput, -25, 25, 65, 115));
+  servoY.write(map(yawOutput, -25, 25, 65, 115));
 }
 
 bool launchDetect() {
   if(getAccelMagnitude() > 25.0) {
-    return true;
     Serial.println("Launch Detected!");
+    return true;
   }
   return false;
 }
