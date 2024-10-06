@@ -45,7 +45,8 @@ void loop() {
   updateEuler();
   
   //if(time_since_launch)
-
+  servoX.write(tempX);
+  servoY.write(tempY);
   updateFirstControls();
   delay(10);
 }
