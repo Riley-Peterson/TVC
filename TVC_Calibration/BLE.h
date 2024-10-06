@@ -13,6 +13,9 @@
 bool deviceConnected = false;
 bool armed = false;
 
+float tempX = 90;
+float tempY = 90;
+
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pRxCharacteristic;
 
@@ -65,6 +68,12 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           pTxCharacteristic->setValue(String(max_alt - ground_alt));
           pTxCharacteristic->notify();
           pTxCharacteristic->setValue(" feet \n");
+          pTxCharacteristic->notify();
+        }
+        else {
+          float valueToSend = rxValue.toFloat();
+          tempX = valueToSend;
+          pTxCharacteristic->setValue("Value set\n");
           pTxCharacteristic->notify();
         }
         Serial.println();
