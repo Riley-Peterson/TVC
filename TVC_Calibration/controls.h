@@ -9,8 +9,8 @@ Servo servoX;
 Servo servoY;
 
 // PID variables
-double firstPitchSetpoint = 0, firstPitchInput, firstPitchOutput;
-double firstYawSetpoint = 0, firstYawInput, firstYawOutput;
+double firstPitchSetpoint = 0, pitchInput, pitchOutput;
+double firstYawSetpoint = 0, yawInput, yawOutput;
 double secondPitchSetpoint = 30;
 double secondYawSetpoint = 30;
 
