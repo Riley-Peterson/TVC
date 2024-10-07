@@ -81,4 +81,24 @@ bool launchDetect() {
   return false;
 }
 
+void moveGimbalInCircle() {
+    int centerAngle = 90;
+    int minAngle = 65;
+    int maxAngle = 115;
+    int step = 2;  // Step size for incrementing/decrementing the angle
+
+    // Loop to create circular motion
+    for (int i = 0; i < 360; i += step) {
+        // Calculate servo positions for circular motion
+        int angleX = centerAngle + (maxAngle - centerAngle) * cos(radians(i));
+        int angleY = centerAngle + (maxAngle - centerAngle) * sin(radians(i));
+
+        // Write angles to the servos
+        servoX.write(angleX);
+        servoY.write(angleY);
+
+        delay(10);
+    }
+}
+
 #endif

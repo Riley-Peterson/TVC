@@ -35,7 +35,8 @@ void setup() {
   flash.eraseChip();
   Serial.println("Flash Erased");
   erasedFlashSound();
-
+  servoX.write(90);
+  servoY.write(90);
   while(!armed) {
     blinkFast(1);
   }

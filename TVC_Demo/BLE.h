@@ -1,119 +1,101 @@
-#include <types.h>
-#include <pin_defs.h>
-#include <system_utils.h>
-#include <sensors.h>
-#include <BLE.h>
-#include <controls.h>
-#include <flash_chip.h>
+#ifndef BLE_H
+#define BLE_H
 
-bool chutes_fired = false;
-unsigned long launch_start_time;
-unsigned long time_since_launch;
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
 
-void setup() {
-  Serial.begin(115200);
-  delay(3000);
-  initializePins();
-  initializeBluetooth();
-  initializeSensors();
-  initializeControls();
-  initializeFlash();
-  calibrateIMU();
-  delay(10);
-  readSensors();
+#define SERVICE_UUID           "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" // UART service UUID
+#define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
+#define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 
-  ground_alt = altitude;
+bool deviceConnected = false;
+bool armed = false;
 
-  if(digitalRead(select) == LOW) {
-    Serial.println("Holding");
-    dumpData();
-    onGround();
-  }
-  delay(500);
+float tempX = 90;
+float tempY = 90;
 
-  Serial.println("Erasing Flash... ");
-  flash.eraseChip();
-  Serial.println("Flash Erased");
-  erasedFlashSound();
+int demoMode = 0;
 
-  while(!armed) {
-    blinkFast(1);
-  }
+BLECharacteristic *pTxCharacteristic;
+BLECharacteristic *pRxCharacteristic;
 
-  //curr_phase = FlightPhase::PAD_IDLE;
-  curr_phase = "PAD_IDLE";
-
-  float tempAccelMag = getAccelMagnitude();
-  while(!launchDetect()) {
-    readSensors();
-    updateEuler();
-    if(getAccelMagnitude() < tempAccelMag + 1 && getAccelMagnitude() > tempAccelMag - 1) {
-      calibrateIMU();
+class MyServerCallbacks: public BLEServerCallbacks {
+    void onConnect(BLEServer* pServer) {
+      deviceConnected = true;
+      deviceConnectedSound();
+    };
+    void onDisconnect(BLEServer* pServer) {
+      deviceConnected = false;
+      deviceDisconnectedSound();
+      pServer->getAdvertising()->start();
     }
-    //Serial.println(getAccelMagnitude());
-    updateControls();
-    delay(10);
-  }
+};
 
-  //curr_phase = FlightPhase::ASCENT;
-  curr_phase = "ASCENT";
+class MyCallbacks: public BLECharacteristicCallbacks {
+    void onWrite(BLECharacteristic *pCharacteristic) {
+      String rxValue = pCharacteristic->getValue().c_str();
+      if (rxValue.length() > 0) {
+        Serial.println("*********");
+        Serial.print("Received Value: ");
+        for (int i = 0; i < rxValue.length(); i++) {
+          Serial.print(rxValue[i]);
+        }
+        Serial.println();
+        // Do stuff based on the command received from the app
+        if (rxValue.indexOf("CAL") != -1) { 
+          Serial.println("Calibrating...");
+          pTxCharacteristic->setValue("Calibrating...\n");
+          pTxCharacteristic->notify();
+          calibrateIMU();
+          delay(100);
+          pTxCharacteristic->setValue("Calibrated!\n");
+          pTxCharacteristic->notify();
+        }
+        else if (rxValue.indexOf("ARM") != -1) {
+          Serial.println("Arming...");
+          pTxCharacteristic->setValue("Arming...\n");
+          pTxCharacteristic->notify();
+          armed = true;
+          armedSound();
+          delay(100);
+          pTxCharacteristic->setValue("Armed!\n");
+          pTxCharacteristic->notify();
+        }
+        else if (rxValue.indexOf("1") != -1) {
+          pTxCharacteristic->setValue("Demo 1");
+          pTxCharacteristic->notify();
+          demoMode = 1;
+        }
+        else if (rxValue.indexOf("2") != -1) {
+          pTxCharacteristic->setValue("Demo 2");
+          pTxCharacteristic->notify();
+          demoMode = 2;
+        }
+        else {
+          float valueToSend = rxValue.toFloat();
+          tempX = valueToSend;
+          pTxCharacteristic->setValue("Value set\n");
+          pTxCharacteristic->notify();
+        }
+        Serial.println();
+        Serial.println("*********");
+      }
+    }
+};
 
-  launch_start_time = millis();
-  time_since_launch = launch_start_time;
+inline void initializeBluetooth() {
+  BLEDevice::init("Sigmoid Flight Controller");
+  BLEServer *pServer = BLEDevice::createServer();
+  pServer->setCallbacks(new MyServerCallbacks());
+  BLEService *pService = pServer->createService(SERVICE_UUID);
+  pTxCharacteristic = pService->createCharacteristic(CHARACTERISTIC_UUID_TX, BLECharacteristic::PROPERTY_NOTIFY);
+  pTxCharacteristic->addDescriptor(new BLE2902());
+  pRxCharacteristic = pService->createCharacteristic(CHARACTERISTIC_UUID_RX, BLECharacteristic::PROPERTY_WRITE);
+  pRxCharacteristic->setCallbacks(new MyCallbacks());
+  pService->start();
+  pServer->getAdvertising()->start();
 }
 
-void loop() {
-  Serial.println((time_since_launch - launch_start_time) / 1000);
-  readSensors();
-  updateEuler();
-  if(max_alt > altitude + 2 && curr_phase == "ASCENT") {
-    curr_phase = "APOGEE";
-    //curr_phase = FlightPhase::APOGEE;
-  }
-  if(time_since_launch - launch_start_time > 4000 && !chutes_fired && time_since_launch - launch_start_time < 7000) { // This will be done with an interrupt in the future
-    digitalWrite(pyro_1, HIGH);
-    chutes_fired = true;
-    curr_phase = "MAIN";
-    //curr_phase = FlightPhase::MAIN;
-  }
-  if(time_since_launch - launch_start_time > 7000 && chutes_fired) { // This will also be done with an interrupt in the future
-    digitalWrite(pyro_1, LOW);
-    chutes_fired = false;
-  }
-  if(getAccelMagnitude() > 9.0 && getAccelMagnitude() < 15.0 && time_since_launch - launch_start_time > 15000) {
-    curr_phase = "GROUND";
-    //curr_phase = FlightPhase::GROUND;
-    onGround();
-  }
-  
-  updateControls();
-  /*
-  data.time = time_since_launch - launch_start_time;
-  data.temperature = temperature;
-  data.pressure = pressure;
-  data.altitude = altitude - ground_alt;
-  data.orientation = q;
-  vec3_t curr_accel(accel.getAccelX_mss(), accel.getAccelY_mss(), accel.getAccelZ_mss());
-  data.acceleration = curr_accel;
-  data.servoActuationX = actuation_x;
-  data.servoActuationY = actuation_y;
-  data.phase = curr_phase;
-  writeData(data);
-  */
-  // Band Aid Solution
-  writeData(String(time_since_launch - launch_start_time));
-  writeData(String(temperature));
-  writeData(String(pressure));
-  writeData(String(altitude - ground_alt));
-  writeData(String(pitch));
-  writeData(String(yaw));
-  writeData(String(roll));
-  writeData(String(accel.getAccelX_mss()));
-  writeData(String(accel.getAccelY_mss()));
-  writeData(String(accel.getAccelZ_mss()));
-  writeData(String(actuation_x));
-  writeData(String(actuation_y));
-  writeData(curr_phase);
-  time_since_launch = millis();
-  delay(10);
-}
+#endif // BLE_H

@@ -6,8 +6,6 @@
 #include <controls.h>
 #include <flash_chip.h>
 
-
-
 unsigned long launch_start_time;
 unsigned long time_since_launch;
 //bool 
@@ -29,12 +27,6 @@ void setup() {
     blinkFast(1);  
   }
 
-  //curr_phase = FlightPhase::PAD_IDLE;
-  curr_phase = "PAD_IDLE";
-
-  //curr_phase = FlightPhase::ASCENT;
-  curr_phase = "ASCENT";
-
   launch_start_time = millis();
   time_since_launch = launch_start_time;
 }
@@ -44,9 +36,8 @@ void loop() {
   readSensors();
   updateEuler();
   
-  //if(time_since_launch)
   servoX.write(tempX);
   servoY.write(tempY);
-  updateFirstControls();
+  //updateFirstControls();
   delay(10);
 }

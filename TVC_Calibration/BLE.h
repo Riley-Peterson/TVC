@@ -70,6 +70,26 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           pTxCharacteristic->setValue(" feet \n");
           pTxCharacteristic->notify();
         }
+        else if (rxValue.indexOf("x+") != -1) {
+          tempX++;
+          pTxCharacteristic->setValue("X+ set");
+          pTxCharacteristic->notify();
+        }
+        else if (rxValue.indexOf("y+") != -1) {
+          tempY++;
+          pTxCharacteristic->setValue("Y+ set");
+          pTxCharacteristic->notify();
+        }
+        else if (rxValue.indexOf("x-") != -1) {
+          tempX--;
+          pTxCharacteristic->setValue("X- set");
+          pTxCharacteristic->notify();
+        }
+        else if (rxValue.indexOf("y-") != -1) {
+          tempY--;
+          pTxCharacteristic->setValue("Y+ set");
+          pTxCharacteristic->notify();
+        }
         else {
           float valueToSend = rxValue.toFloat();
           tempX = valueToSend;

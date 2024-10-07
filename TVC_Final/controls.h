@@ -11,7 +11,7 @@ Servo servoY;
 // PID variables
 double pitchSetpoint = 0, pitchInput, pitchOutput;
 double yawSetpoint = 0, yawInput, yawOutput;
-double Kp = 1, Ki = 0.02, Kd = 0.3;
+double Kp = 0.25, Ki = 0.0, Kd = 0.07;
 
 float actuation_x = 0;
 float actuation_y = 0;
