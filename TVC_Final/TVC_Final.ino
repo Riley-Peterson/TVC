@@ -32,7 +32,7 @@ void setup() {
   delay(500);
 
   Serial.println("Erasing Flash... ");
-  flash.eraseChip();
+  //flash.eraseChip();
   Serial.println("Flash Erased");
   erasedFlashSound();
   servoX.write(90);
