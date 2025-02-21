@@ -24,16 +24,16 @@ void setup() {
   ground_alt = altitude;
   delay(500);
 
-  while(!armed) {
-    blinkFast(1);
-  }
+  //while(!armed) {
+  //  blinkFast(1);
+  //}
 }
 
 void loop() {
   Serial.println((time_since_launch - launch_start_time) / 1000);
   readSensors();
   updateEuler();
-  if(demoMode == 1) {
+  if(demoMode == 0) {
     moveGimbalInCircle();
   }
   if(demoMode == 2) {
