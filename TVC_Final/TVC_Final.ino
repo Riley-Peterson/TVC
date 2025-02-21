@@ -25,6 +25,7 @@ void setup() {
   ground_alt = altitude;
 
   if(digitalRead(select) == LOW) {
+    delay(6000);
     Serial.println("Holding");
     dumpData();
     onGround();
