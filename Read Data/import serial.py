@@ -3,7 +3,7 @@ import csv
 import time
 
 # Define the serial port and baud rate
-serial_port = 'COM6'
+serial_port = 'COM9'
 baud_rate = 115200  # Adjust this if your baud rate is different
 
 # Open the serial port
