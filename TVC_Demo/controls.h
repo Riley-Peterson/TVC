@@ -14,7 +14,7 @@ double firstYawSetpoint = 0, yawInput, yawOutput;
 double secondPitchSetpoint = 30;
 double secondYawSetpoint = 30;
 
-double Kp = 1, Ki = 0.00, Kd = 0.3; //Ki originally 0.02
+double Kp = 1, Ki = 0.00, Kd = 0.08; //Ki originally 0.02
 
 float actuation_x = 0;
 float actuation_y = 0;
