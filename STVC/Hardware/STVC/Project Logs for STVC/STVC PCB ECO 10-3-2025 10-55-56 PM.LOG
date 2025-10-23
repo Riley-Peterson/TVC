@@ -1,0 +1,17 @@
+Removed Member From Class: ClassName=Microcontroller Member=U2
+Change Component Footprint: Designator=U3 Old Footprint=MSI-MS561101BA03-50-8_V New Footprint=TECO-MS561101BA03_V
+Change Managed Component Library Link : Designator=U3 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=3464F62F-8F3F-477B-8B21-AB6CB6A31254 Old ItemGUID=6F029A0A-5CCA-4AB9-ACAF-9C38813C95EF New ItemGUID=B29B668D-D003-47C0-A5DB-E6463C46ECBE Old RevisionGUID=8FD5712B-C219-45F0-A474-3A643305BBF0 New RevisionGUID=3ABD807B-9F01-49D1-A508-16B1B50BF4AE
+Change component parameters: Designator = "U3" ("U3"); Footprint = "MSI-MS561101BA03-50-8_V"; UniqueID = "\NTGSOZRC" ("\NTGSOZRC")
+Change component parameters (AddParameter): Name = "Case/Package"; Value = "LGA-8"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Supply Voltage"; Value = "3.6V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Operating Temperature"; Value = "-40°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Supply Voltage"; Value = "1.8V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "SMT"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Nominal Supply Current"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Nominal Supply Voltage"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Output Current"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pins"; Value = "8"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "RoHS Compliant"; Value = "Yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Sensor Type"; Value = "Barometer"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Microcontroller Member=Component U1 STM32WB50CGU5
