@@ -1,0 +1,93 @@
+Change Component Designator: OldDesignator=ANT? NewDesignator=ANT1
+Added Component: Designator=C1(CAPC0603(1608)100_L)
+Add component (AddParameter): Name = "Capacitor Type"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Case/Package"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Component Type"; Value = "Capacitors"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "smt"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ripple Current"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ripple Current (AC)"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=C2(CAPC0603(1608)100_L)
+Add component (AddParameter): Name = "Capacitor Type"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Case/Package"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Component Type"; Value = "Capacitors"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "smt"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ripple Current"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ripple Current (AC)"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J3(HDRV2W110P0X254_1X2_508X254X854P)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://componentsearchengine.com/Datasheets/2/61300211121.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "8.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "61300211121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "710-61300211121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/61300211121?qs=t4813l51qx%252B1A5GYDQxPlw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=J4(HDRV2W110P0X254_1X2_508X254X854P)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://componentsearchengine.com/Datasheets/2/61300211121.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "8.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "61300211121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "710-61300211121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/61300211121?qs=t4813l51qx%252B1A5GYDQxPlw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=R1(RESC0603(1608)_L)
+Add component (AddParameter): Name = "Case/Package"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Component Type"; Value = "Resistors"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "smt"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=R2(RESC0603(1608)_L)
+Add component (AddParameter): Name = "Case/Package"; Value = "0603"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Component Type"; Value = "Resistors"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "smt"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC Pin=R1-2
+Added Pin To Net: NetName=VCC Pin=R2-2
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=GND Pin=C2-1
+Added Pin To Net: NetName=GND Pin=J3-2
+Added Pin To Net: NetName=GND Pin=J4-2
+Added Net: Name=GND
+Added Pin To Net: NetName=NRST Pin=C1-2
+Added Pin To Net: NetName=NRST Pin=C2-2
+Added Pin To Net: NetName=NRST Pin=J3-1
+Added Pin To Net: NetName=NRST Pin=J4-1
+Added Pin To Net: NetName=NRST Pin=R1-1
+Added Pin To Net: NetName=NRST Pin=R2-1
+Added Pin To Net: NetName=NRST Pin=U1-7
+Added Net: Name=NRST
+Added Member To Class: ClassName=Microcontroller Member=Component C1 Capacitors,0603,100nF
+Added Member To Class: ClassName=Microcontroller Member=Component C2 Capacitors,0603,smt,100nF
+Added Member To Class: ClassName=Microcontroller Member=Component J3 61300211121
+Added Member To Class: ClassName=Microcontroller Member=Component J4 61300211121
+Added Member To Class: ClassName=Microcontroller Member=Component R1 Resistors,0603,smt,10k
+Added Member To Class: ClassName=Microcontroller Member=Component R2 Resistors,0603,smt,10k
+Added Rule: Name=Schematic Supply Nets_1
